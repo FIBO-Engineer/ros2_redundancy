@@ -20,7 +20,7 @@ class RedundantNode(Node):
         self.ros2_command = self.get_parameter('ros2_command').get_parameter_value().string_value
         self.status_pub = self.create_publisher(Status, 'status', 10)
         self.is_redundant_initial = False
-        self.sock = SocketToolsLib(self.redundant_ip, self.redundant_port, 5)
+        self.sock = SocketToolsLib(self.redundant_ip, self.redundant_port, 0.005)
         self.redundant_status = b'\x02\x00'
         self.is_run_app = False
         self.is_main_node_run = False
@@ -41,7 +41,7 @@ class RedundantNode(Node):
         if not self.is_redundant_initial:
             receive_data = self.sock.receive()
             if receive_data[0] == b'\x01\x00' and receive_data[1] == self.main_ip and receive_data[2] == self.main_port:
-                time.sleep(0.5)
+                time.sleep(0.0005)
                 self.sock.send(self.main_ip, self.main_port, self.redundant_status)
                 self.get_logger().info('Main: Main node is running but app is not run, Redundant: Redundant node is running but app is not run')
                 self.is_redundant_initial = True
@@ -50,7 +50,7 @@ class RedundantNode(Node):
                 self.is_redundant_node_run = True
                 self.is_app_run_in_redundant_node = False
             elif receive_data[0] == b'\x01\x01' and receive_data[1] == self.main_ip and receive_data[2] == self.main_port:
-                time.sleep(0.5)
+                time.sleep(0.0005)
                 self.sock.send(self.main_ip, self.main_port, self.redundant_status)
                 self.get_logger().info('Main: Main node and app are running, Redundant: Redundant node is running but app is not run')
                 self.is_redundant_initial = True
@@ -59,7 +59,7 @@ class RedundantNode(Node):
                 self.is_redundant_node_run = True
                 self.is_app_run_in_redundant_node = False
             elif receive_data[0] == b'\x01\x02' and receive_data[1] == self.main_ip and receive_data[2] == self.main_port:
-                time.sleep(0.5)
+                time.sleep(0.0005)
                 self.redundant_status = b'\x02\x01'
                 self.sock.send(self.main_ip, self.main_port, self.redundant_status)
                 self.get_logger().info('Main: Main node is running but app is not run and error, Redundant: Redundant node and app are running')
@@ -92,7 +92,7 @@ class RedundantNode(Node):
             receive_data = self.sock.receive()
             if self.is_run_app:
                 if receive_data[1] == self.main_ip and receive_data[2] == self.main_port:
-                    time.sleep(0.5)
+                    time.sleep(0.0005)
                     self.sock.send(self.main_ip, self.main_port, self.redundant_status)                   
                     self.get_logger().info('Main: Killing main node, Redundant: Redundant node and app are running')
                     self.is_main_node_run = False
@@ -116,7 +116,7 @@ class RedundantNode(Node):
                     return
             else:
                 if receive_data[0] == b'\x01\x00' and receive_data[1] == self.main_ip and receive_data[2] == self.main_port:
-                    time.sleep(0.5)
+                    time.sleep(0.0005)
                     self.sock.send(self.main_ip, self.main_port, self.redundant_status)
                     self.get_logger().info('Main: Main node is runnning but app is not run, Redundant: Redundant node is running but app is not run')
                     self.is_main_node_run = True
@@ -124,7 +124,7 @@ class RedundantNode(Node):
                     self.is_redundant_node_run = True
                     self.is_app_run_in_redundant_node = False
                 elif receive_data[0] == b'\x01\x01' and receive_data[1] == self.main_ip and receive_data[2] == self.main_port:
-                    time.sleep(0.5)
+                    time.sleep(0.0005)
                     self.sock.send(self.main_ip, self.main_port, self.redundant_status)
                     self.get_logger().info('Main: Main node and app are running, Redundant: Redundant node is running but app is not run')
                     self.is_main_node_run = True
@@ -132,7 +132,7 @@ class RedundantNode(Node):
                     self.is_redundant_node_run = True
                     self.is_app_run_in_redundant_node = False
                 elif receive_data[0] == b'\x01\x02' and receive_data[1] == self.main_ip and receive_data[2] == self.main_port:
-                    time.sleep(0.5)
+                    time.sleep(0.0005)
                     self.redundant_status = b'\x02\x01'
                     self.sock.send(self.main_ip, self.main_port, self.redundant_status)
                     self.get_logger().info('Main: Main node is running but app is not run and error, Redundant: Redundant node and app is running')                   
@@ -143,7 +143,7 @@ class RedundantNode(Node):
                     self.is_redundant_node_run = True
                     self.is_app_run_in_redundant_node = True
                 elif receive_data[0] == 'No data received':
-                    time.sleep(0.5)
+                    time.sleep(0.0005)
                     self.redundant_status = b'\x02\x01'
                     self.sock.send(self.main_ip, self.main_port, self.redundant_status)
                     self.get_logger().info('Main: Main node and app are not run, Redundant: Redundant and app are running')
