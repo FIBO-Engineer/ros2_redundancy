@@ -12,14 +12,15 @@ class MainNode(Node):
         self.declare_parameter('main_port', 1254) 
         self.declare_parameter('redundant_ip', '192.168.127.104')  
         self.declare_parameter('redundant_port', 1254) 
-        self.declare_parameter('ros2_command', 'ros2 run demo_nodes_cpp talker') 
+        self.declare_parameter('ros2_command', 'ros2 launch yamaha_ros2 bs_master.launch.py') 
         self.main_ip = self.get_parameter('main_ip').get_parameter_value().string_value
         self.main_port = self.get_parameter('main_port').get_parameter_value().integer_value
         self.redundant_ip = self.get_parameter('redundant_ip').get_parameter_value().string_value
         self.redundant_port = self.get_parameter('redundant_port').get_parameter_value().integer_value
         self.ros2_command = self.get_parameter('ros2_command').get_parameter_value().string_value
         self.status_pub = self.create_publisher(Status, 'status', 10)
-        self.sock = SocketToolsLib(self.main_ip, self.main_port, 0.005)
+        self.sock = SocketToolsLib(self.main_ip, self.main_port, 0.5)
+        # self.sock = SocketToolsLib(self.main_ip, self.main_port, 5)
         self.is_main_initial = False
         self.main_status = b'\x01\x00'
         self.timestamp = 0
@@ -78,7 +79,7 @@ class MainNode(Node):
                 rclpy.shutdown()
                 return                
         else:
-            if time.time() - self.timestamp > 0.002:
+            if time.time() - self.timestamp > 0.2:
                 self.timestamp = time.time()
                 if is_command_running(self.ros2_command):
                     self.sock.send(self.redundant_ip, self.redundant_port , self.main_status)
