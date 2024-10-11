@@ -20,7 +20,7 @@ class RedundantNode(Node):
         self.ros2_command = self.get_parameter('ros2_command').get_parameter_value().string_value
         self.status_pub = self.create_publisher(Status, 'status', 10)
         self.is_redundant_initial = False
-        self.sock = SocketToolsLib(self.redundant_ip, self.redundant_port, 0.5)
+        self.sock = SocketToolsLib(self.redundant_ip, self.redundant_port, 2)
         # self.sock = SocketToolsLib(self.redundant_ip, self.redundant_port, 5)
         self.redundant_status = b'\x02\x00'
         self.is_run_app = False

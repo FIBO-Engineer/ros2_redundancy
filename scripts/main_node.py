@@ -19,7 +19,7 @@ class MainNode(Node):
         self.redundant_port = self.get_parameter('redundant_port').get_parameter_value().integer_value
         self.ros2_command = self.get_parameter('ros2_command').get_parameter_value().string_value
         self.status_pub = self.create_publisher(Status, 'status', 10)
-        self.sock = SocketToolsLib(self.main_ip, self.main_port, 0.5)
+        self.sock = SocketToolsLib(self.main_ip, self.main_port, 2)
         # self.sock = SocketToolsLib(self.main_ip, self.main_port, 5)
         self.is_main_initial = False
         self.main_status = b'\x01\x00'
