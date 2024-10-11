@@ -71,13 +71,16 @@ class MainNode(Node):
                 self.is_app_run_in_redundant_node = False
             else:
                 self.get_logger().error('Out of scope!')
-                self.is_main_node_run = False
-                self.is_app_run_in_main_node = False
-                self.is_redundant_node_run = False
-                self.is_app_run_in_redundant_node = False
-                self.destroy_node()
-                rclpy.shutdown()
-                return                
+                self.get_logger().error(f'data: {receive_data[0]}, ip: {receive_data[1]}, port: {receive_data[2]}')
+                # self.get_logger().error(f'{receive_data[1]}')
+                # self.get_logger().error(f'{receive_data[2]}')
+                # self.is_main_node_run = False
+                # self.is_app_run_in_main_node = False
+                # self.is_redundant_node_run = False
+                # self.is_app_run_in_redundant_node = False
+                # self.destroy_node()
+                # rclpy.shutdown()
+                # return                
         else:
             if time.time() - self.timestamp > 0.2:
                 self.timestamp = time.time()
@@ -98,13 +101,19 @@ class MainNode(Node):
                         self.is_app_run_in_redundant_node = False                    
                     else:
                         self.get_logger().error('Out of scope!')
-                        self.is_main_node_run = False
-                        self.is_app_run_in_main_node = False
-                        self.is_redundant_node_run = False
-                        self.is_app_run_in_redundant_node = False
-                        self.destroy_node()
-                        rclpy.shutdown()
-                        return   
+                        self.get_logger().error(f'data: {receive_data[0]}, ip: {receive_data[1]}, port: {receive_data[2]}')
+
+                        # self.get_logger().error('Out of scope!')
+                        # self.get_logger().error(f'{receive_data[0]}')
+                        # self.get_logger().error(f'{receive_data[1]}')
+                        # self.get_logger().error(f'{receive_data[2]}')
+                        # self.is_main_node_run = False
+                        # self.is_app_run_in_main_node = False
+                        # self.is_redundant_node_run = False
+                        # self.is_app_run_in_redundant_node = False
+                        # self.destroy_node()
+                        # rclpy.shutdown()
+                        # return   
                 else:
                     self.main_status = b'\x01\x02'
                     self.sock.send(self.redundant_ip, self.redundant_port , self.main_status)
@@ -132,13 +141,19 @@ class MainNode(Node):
                         self.is_app_run_in_redundant_node = False
                     else:
                         self.get_logger().error('Out of scope!')
-                        self.is_main_node_run = False
-                        self.is_app_run_in_main_node = False
-                        self.is_redundant_node_run = False
-                        self.is_app_run_in_redundant_node = False
-                        self.destroy_node()
-                        rclpy.shutdown()
-                        return
+                        self.get_logger().error(f'data: {receive_data[0]}, ip: {receive_data[1]}, port: {receive_data[2]}')
+
+                        # self.get_logger().error('Out of scope!')
+                        # self.get_logger().error(f'{receive_data[0]}')
+                        # self.get_logger().error(f'{receive_data[1]}')
+                        # self.get_logger().error(f'{receive_data[2]}')
+                        # self.is_main_node_run = False
+                        # self.is_app_run_in_main_node = False
+                        # self.is_redundant_node_run = False
+                        # self.is_app_run_in_redundant_node = False
+                        # self.destroy_node()
+                        # rclpy.shutdown()
+                        # return
                 self.status_publisher()
 
 def main(args=None):
