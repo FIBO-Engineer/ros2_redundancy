@@ -72,6 +72,9 @@ class MainNode(Node):
             else:
                 self.get_logger().error('Out of scope!')
                 self.get_logger().error(f'data: {receive_data[0]}, ip: {receive_data[1]}, port: {receive_data[2]}')
+                sub_process_function(self.ros2_command)
+                self.main_status = b'\x01\x01'
+                self.is_main_initial = True
                 # self.get_logger().error(f'{receive_data[1]}')
                 # self.get_logger().error(f'{receive_data[2]}')
                 # self.is_main_node_run = False

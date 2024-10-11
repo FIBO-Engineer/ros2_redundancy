@@ -80,13 +80,14 @@ class RedundantNode(Node):
                 self.is_app_run_in_main_node = False
                 self.is_redundant_node_run = True
                 self.is_app_run_in_redundant_node = False
+                self.is_redundant_initial = True
                 # self.destroy_node()
                 # rclpy.shutdown()
                 # return
             else:
                 self.get_logger().error('Out of scope!')
                 self.get_logger().error(f'data: {receive_data[0]}, ip: {receive_data[1]}, port: {receive_data[2]}')
-
+                self.is_redundant_initial = True
                 # self.get_logger().error('Out of scope!')
                 # self.is_main_node_run = False
                 # self.is_app_run_in_main_node = False
@@ -116,7 +117,9 @@ class RedundantNode(Node):
                 else:
                     self.get_logger().error('Out of scope!')
                     self.get_logger().error(f'data: {receive_data[0]}, ip: {receive_data[1]}, port: {receive_data[2]}')
-
+                    time.sleep(0.05)
+                    # time.sleep(0.5)
+                    self.sock.send(self.main_ip, self.main_port, self.redundant_status) 
                     # self.get_logger().error('Out of scope!')
                     # self.is_main_node_run = False
                     # self.is_app_run_in_main_node = False
