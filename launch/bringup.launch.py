@@ -17,7 +17,7 @@ def generate_launch_description():
                 },{
                     'redundant_port': 1254
                 },{
-                    'ros2_command': 'ros2 launch rosbridge_server rosbridge_websocket_launch.xml'
+                    'ros2_command': 'ros2 run yamaha_ros2 bs_master.launch.py'
                 }
             ],
             output='screen'
