@@ -8,11 +8,11 @@ from tools_lib import *
 class MainNode(Node):
     def __init__(self):
         super().__init__('main_node', namespace='primary_node')
-        self.declare_parameter('main_ip', '192.168.100.4')  
+        self.declare_parameter('main_ip', '192.168.127.103')  
         self.declare_parameter('main_port', 1254) 
-        self.declare_parameter('redundant_ip', '192.168.100.5')  
+        self.declare_parameter('redundant_ip', '192.168.127.104')  
         self.declare_parameter('redundant_port', 1254) 
-        self.declare_parameter('ros2_command', 'ros2 run demo_nodes_cpp talker') 
+        self.declare_parameter('ros2_command', 'ros2 launch yamaha_ros2 bs_master.launch.py') 
         self.main_ip = self.get_parameter('main_ip').get_parameter_value().string_value
         self.main_port = self.get_parameter('main_port').get_parameter_value().integer_value
         self.redundant_ip = self.get_parameter('redundant_ip').get_parameter_value().string_value

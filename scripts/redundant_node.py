@@ -12,7 +12,7 @@ class RedundantNode(Node):
         self.declare_parameter('main_port', 1254) 
         self.declare_parameter('redundant_ip', '192.168.127.104')  
         self.declare_parameter('redundant_port', 1254) 
-        self.declare_parameter('ros2_command', 'ros2 run yamaha_ros2 bs_master.launch.py') 
+        self.declare_parameter('ros2_command', 'ros2 launch yamaha_ros2 bs_master.launch.py') 
         self.main_ip = self.get_parameter('main_ip').get_parameter_value().string_value
         self.main_port = self.get_parameter('main_port').get_parameter_value().integer_value
         self.redundant_ip = self.get_parameter('redundant_ip').get_parameter_value().string_value
