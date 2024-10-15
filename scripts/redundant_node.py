@@ -7,7 +7,7 @@ from tools_lib import *
 
 class RedundantNode(Node):
     def __init__(self):
-        super().__init__('redundant_node', namespace='redundant_node')
+        super().__init__('redundant_node')
         self.declare_parameter('main_ip', '192.168.127.103')  
         self.declare_parameter('main_port', 1254) 
         self.declare_parameter('redundant_ip', '192.168.127.104')  
@@ -77,8 +77,8 @@ class RedundantNode(Node):
                 self.is_main_node_run = False
                 self.is_app_run_in_main_node = False
                 self.is_redundant_node_run = True
-                self.is_app_run_in_redundant_node = True 
-                self.get_logger().info('Primary: Primary node and app are not run, Redundant: Redundant node and app are running')  
+                self.is_app_run_in_redundant_node = False 
+                self.get_logger().info('Primary: Primary node and app are not run, Redundant: Redundant node is running but app is not run')  
             else:
                 time.sleep(0.05)
                 self.sock.send(self.main_ip, self.main_port, self.redundant_status)

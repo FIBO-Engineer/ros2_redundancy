@@ -7,7 +7,7 @@ from tools_lib import *
 
 class MainNode(Node):
     def __init__(self):
-        super().__init__('main_node', namespace='primary_node')
+        super().__init__('primary_node')
         self.declare_parameter('main_ip', '192.168.127.103')  
         self.declare_parameter('main_port', 1254) 
         self.declare_parameter('redundant_ip', '192.168.127.104')  
