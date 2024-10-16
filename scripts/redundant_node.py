@@ -226,7 +226,7 @@ class RedundantNode(Node):
         self.is_redundant_node_run = False
         self.is_app_run_in_redundant_node = False
         self.safety_count = 0
-        self.sefety_count_desire = 1
+        self.sefety_count_desire = 5
 
     # def status_publisher(self):
     #     msg = Status()

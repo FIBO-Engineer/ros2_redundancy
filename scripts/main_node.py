@@ -29,9 +29,9 @@ class MainNode(Node):
         self.is_redundant_node_run = False
         self.is_app_run_in_redundant_node = False
         self.safety_count = 0
-        self.safety_count_desire = 1
+        self.safety_count_desire = 5
         self.safety_count_2 = 0
-        self.safety_count_desire_2 = 1
+        self.safety_count_desire_2 = 5
 
     # def status_publisher(self):
     #     msg = Status()
