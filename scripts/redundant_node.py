@@ -23,16 +23,10 @@ class RedundantNode(Node):
         self.sock = SocketToolsLib(self.redundant_ip, self.redundant_port, 0.5)
         self.redundant_status = b'\x02\x00'
         self.is_run_app = False
-
         self.primary_node_running = False
         self.primary_controller_active = False
         self.redundant_node_running = False
         self.redundant_controller_active = False
-        # self.primary_node_running_stamp = False
-        # self.primary_controller_active_stamp = False
-        # self.redundant_node_running_stamp = False
-        # self.redundant_controller_active_stamp = False
-
         self.safety_count = 0
         self.safety_count_desire = 5
 
@@ -43,7 +37,6 @@ class RedundantNode(Node):
         msg.redundant_node_running = self.redundant_node_running
         msg.redundant_controller_active = self.redundant_controller_active
         self.status_pub.publish(msg)
-        # self.get_logger().info('Pubish the message!')   
 
     def redundant_run(self):
         if not self.is_redundant_initial:

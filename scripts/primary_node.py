@@ -39,7 +39,6 @@ class PrimaryNode(Node):
         msg.redundant_node_running = self.redundant_node_running
         msg.redundant_controller_active = self.redundant_controller_active
         self.status_pub.publish(msg)
-        # self.get_logger().info('Publish the message!')
 
     def primary_run(self):
         if not self.is_main_initial:
