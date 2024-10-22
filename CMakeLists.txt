@@ -16,9 +16,9 @@ find_package(Python3 REQUIRED)
 # find_package(ros2_redundancy REQUIRED)
 
 install(PROGRAMS
-  scripts/main.py
+  scripts/primary.py
   scripts/redundant.py
-  scripts/main_node.py
+  scripts/primary_node.py
   scripts/redundant_node.py
   scripts/tools_lib.py
   DESTINATION lib/${PROJECT_NAME}
@@ -43,11 +43,11 @@ endif()
 find_package(rosidl_default_generators REQUIRED)
 
 set(msg_files
-  "msg/Status.msg"
+  "msg/RedundancyStatus.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/Status.msg"
+  "msg/RedundancyStatus.msg"
   DEPENDENCIES builtin_interfaces
 )
 

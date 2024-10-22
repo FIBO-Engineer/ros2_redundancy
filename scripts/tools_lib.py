@@ -6,7 +6,7 @@ import subprocess
 import socket
 import psutil
 import time
-from ros2_redundancy.msg import Status
+from ros2_redundancy.msg import RedundancyStatus
 from enum import Enum
 
 def sub_process_function(command):

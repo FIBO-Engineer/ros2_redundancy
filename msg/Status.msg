@@ -1,4 +1,0 @@
-bool is_main_node_run
-bool is_app_run_in_main_node
-bool is_redundant_node_run
-bool is_app_run_in_redundant_node

@@ -5,13 +5,13 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='ros2_redundancy',
-            executable='main.py',
+            executable='primary.py',
             name='primary_node',
             parameters=[
                 {
-                    'main_ip': '192.168.100.4'
+                    'primary_ip': '192.168.100.4'
                 },{
-                    'main_port': 1254
+                    'primary_port': 1254
                 },{
                     'redundant_ip': '192.168.100.5'
                 },{
