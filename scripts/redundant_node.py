@@ -188,7 +188,8 @@ class RedundantNode(Node):
                         self.primary_controller_active = False
                         self.redundant_node_running = False
                         self.redundant_controller_active = False 
-                        self.get_logger().error('Out of scope!')                    
+                        self.get_logger().error('Out of scope!')  
+            self.status_publisher()                  
 
 def redundant(args=None):
     rclpy.init(args=args)

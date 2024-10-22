@@ -5,8 +5,8 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='ros2_redundancy',
-            executable='primary.py',
-            name='primary_node',
+            executable='redundant.py',
+            name='redundant_node',
             parameters=[
                 {
                     'primary_ip': '192.168.127.103'
@@ -17,7 +17,7 @@ def generate_launch_description():
                 },{
                     'redundant_port': 1254
                 },{
-                    'ros2_command': 'ros2 launch yamaha_ros2 bs_master.launch.py'
+                    'ros2_command': 'ros2 launch ros2_redundancy bs_master.launch.py'
                 }
             ],
             output='screen'
