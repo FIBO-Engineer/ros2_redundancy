@@ -25,6 +25,7 @@
   <depend condition="$ROS_VERSION == 2">rosidl_default_generators</depend>
   <build_depend condition="$ROS_VERSION == 2">Python3</build_depend>
   <exec_depend condition="$ROS_VERSION == 2">Python3</exec_depend>
+  <member_of_group condition="$ROS_VERSION == 2">rosidl_interface_packages</member_of_group>
 
   <!-- ROS1-specific dependencies -->
   <build_depend condition="$ROS_VERSION == 1">message_generation</build_depend>
