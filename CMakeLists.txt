@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)  # ROS1 uses 3.0.2, ROS2 uses 3.8 or higher
+cmake_minimum_required(VERSION 3.5)
 project(ros2_redundancy)
 
 # Detect if building in ROS2 or ROS1
