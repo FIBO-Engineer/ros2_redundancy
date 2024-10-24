@@ -3,29 +3,40 @@
 <package format="3">
   <name>ros2_redundancy</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Package for handling redundancy in ROS1 and ROS2</description>
   <maintainer email="vboxuser@todo.todo">vboxuser</maintainer>
   <license>TODO: License declaration</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
+  <!-- Dependencies for both ROS1 and ROS2 -->
+  
+  <!-- Buildtool dependencies -->
+  <!-- For ROS2 -->
+  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+  <!-- For ROS1 -->
+  <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
 
-  <depend>rclcpp</depend>
+  <!-- Dependencies shared by ROS1 and ROS2 -->
   <depend>std_msgs</depend>
-  <depend>rclpy</depend>
-  <!-- <depend>ros2_redundancy</depend> -->
-  <build_depend>Python3</build_depend>
-  <exec_depend>Python3</exec_depend>
+  <depend>builtin_interfaces</depend>
+  
+  <!-- ROS2-specific dependencies -->
+  <depend condition="$ROS_VERSION == 2">rclcpp</depend>
+  <depend condition="$ROS_VERSION == 2">rclpy</depend>
+  <depend condition="$ROS_VERSION == 2">rosidl_default_generators</depend>
+  <build_depend condition="$ROS_VERSION == 2">Python3</build_depend>
+  <exec_depend condition="$ROS_VERSION == 2">Python3</exec_depend>
 
-  <build_depend>builtin_interfaces</build_depend>
-  <build_depend>rosidl_default_generators</build_depend>
-  <exec_depend>builtin_interfaces</exec_depend>
-  <exec_depend>rosidl_default_generators</exec_depend>
-  <member_of_group>rosidl_interface_packages</member_of_group>
+  <!-- ROS1-specific dependencies -->
+  <build_depend condition="$ROS_VERSION == 1">message_generation</build_depend>
+  <exec_depend condition="$ROS_VERSION == 1">message_runtime</exec_depend>
 
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
+  <!-- Testing dependencies for ROS2 -->
+  <test_depend condition="$ROS_VERSION == 2">ament_lint_auto</test_depend>
+  <test_depend condition="$ROS_VERSION == 2">ament_lint_common</test_depend>
 
   <export>
-    <build_type>ament_cmake</build_type>
+    <!-- Build types for ROS1 and ROS2 -->
+    <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
+    <build_type condition="$ROS_VERSION == 1">catkin</build_type>
   </export>
 </package>
