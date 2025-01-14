@@ -17,11 +17,12 @@
 
   <!-- Dependencies shared by ROS1 and ROS2 -->
   <depend>std_msgs</depend>
-  <depend>builtin_interfaces</depend>
+  
   
   <!-- ROS2-specific dependencies -->
   <depend condition="$ROS_VERSION == 2">rclcpp</depend>
   <depend condition="$ROS_VERSION == 2">rclpy</depend>
+  <depend condition="$ROS_VERSION == 2">builtin_interfaces</depend>
   <depend condition="$ROS_VERSION == 2">rosidl_default_generators</depend>
   <build_depend condition="$ROS_VERSION == 2">Python3</build_depend>
   <exec_depend condition="$ROS_VERSION == 2">Python3</exec_depend>
